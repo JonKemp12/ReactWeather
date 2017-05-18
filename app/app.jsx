@@ -17,6 +17,11 @@ var Examples = require('Examples');
 // When we render the About we also want to show the Main
 var About = require('About');
 
+// Load foundation by using
+// style to inject the css from the foundation.min.css
+require('style!css!foundation-sites/dist/foundation.min.css');
+// And do it by calling the function:
+$(document).foundation();
 
 // render a DOM component, passing the DOM and rhe element
 // which is this app.

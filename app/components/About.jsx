@@ -18,7 +18,9 @@ var React = require('react');
 var About = (props) => {
   return (
     <div>
-      <h3>About child component</h3>
+      <h3>About Weather:</h3>
+      <p>This little app is to practise creating an app in React JS and deploying to Heroku.</p>
+      <p>It offers a form to query openWeatherMap.org with a location and will return the temperature there.</p>
     </div>
   );
 }
