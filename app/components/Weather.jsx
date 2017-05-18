@@ -83,7 +83,7 @@ var Weather = React.createClass({
           It renders 2 children:
           weather form - prompt for city, and submit button
           weather message - show the temp*/}
-          <h1>Get the Weather</h1>
+          <h1>Get the Weather Karen</h1>
           {/* Render form area giving handler prop for event from child */}
           <WeatherForm onSearch={this.handleSearch}/>
           {/* Render message area passing props*/}
