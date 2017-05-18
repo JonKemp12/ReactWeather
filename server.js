@@ -2,9 +2,23 @@ var express = require('express');
 
 // Create our app
 var app = express();
+// Pick up port from environment (for heroku or local)
+// else use 3000
+const PORT = process.env.PORT || 3000;
+
+// Need to redirect https to http:
+app.use(function (req, res, next) {
+  if (req.headers['x-forwarded-proto'] === 'http') {
+    // OK, it is http
+    next();
+  } else {
+    // Need to redirect:
+    res.redirect('http://' + req.hostname + req.url);
+  };
+});
 
 app.use(express.static('public'));
 
-app.listen(3000, function () {
-  console.log('Express server is up on port 3000');
+app.listen(PORT, function () {
+  console.log('Express server is up on PORT '+PORT);
 });
