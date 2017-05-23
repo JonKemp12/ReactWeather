@@ -18,7 +18,7 @@ var React = require('react');
 var About = (props) => {
   return (
     <div>
-      <h1 className="text-center">About Weather</h1>
+      <h1 className="text-center page-title">About Weather</h1>
       <p>This little app is to practise creating an app in React JS and deploying to Heroku.</p>
       <p>It offers a form to query openWeatherMap.org with a location and will return the temperature there.</p>
       <p>It has been build using the following:</p>
