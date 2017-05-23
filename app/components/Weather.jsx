@@ -7,6 +7,8 @@ var WeatherForm = require('WeatherForm');
 var WeatherMessage = require('WeatherMessage');
 // Declare openweathermap object:
 var openWeatherMap = require('openWeatherMap');
+// declare the ErrorModal
+var ErrorModal = require('ErrorModal');
 
 
 // create a class witch a render that returns a single component
@@ -41,7 +43,11 @@ var Weather = React.createClass({
     var that = this;
 
     // Update state:
-    this.setState({isLoading: true});
+    this.setState({
+      isLoading: true,
+      // State to hold ErrorMessage for modal - clear to start
+      errorMessage: undefined
+    });
 
     // get the temp:
     openWeatherMap.getTemp(city).then(function(temp) {
@@ -50,11 +56,12 @@ var Weather = React.createClass({
         temp: temp,
         isLoading: false
       });
-    }, function(errorMesaage) {
-      alert(errorMesaage);
+    }, function(e) { // Returns JS error object
+      // alert(errorMessage);
       // console.log(errorMesaage);
       that.setState({
-        isLoading: false
+        isLoading: false,
+        errorMessage: e.message
       });
     });
       // this.setState({
@@ -66,14 +73,24 @@ var Weather = React.createClass({
 
   render: function() {
     // Declare the states:
-    var {isLoading, city, temp} = this.state;
+    var {isLoading, city, temp, errorMessage} = this.state;
 
     function renderMessage () {
       // if loading then don't display message
       if (isLoading) {
-        return <h3>Fetching weather...</h3>;
+        return <h3 className="text-center">Fetching weather...</h3>;
       } else if (temp && city){ // if we have temp and city then render them
         return <WeatherMessage city={city} temp={temp}/>;
+      }
+    }
+
+    // function to render error modal if there is an error string
+    function renderError() {
+      if (typeof errorMessage === 'string') {
+        return (
+          // JSX to create the modal
+          <ErrorModal message={errorMessage}/>
+        )
       }
     }
 
@@ -83,13 +100,14 @@ var Weather = React.createClass({
           It renders 2 children:
           weather form - prompt for city, and submit button
           weather message - show the temp*/}
-          <h1>Get the Weather Karen</h1>
+          <h1 className="text-center">Get the Weather</h1>
           {/* Render form area giving handler prop for event from child */}
           <WeatherForm onSearch={this.handleSearch}/>
           {/* Render message area passing props*/}
           {/* <WeatherMessage city={city} temp={temp}/> */}
           {renderMessage()}
-
+          {/* render the error  child is there is one*/}
+          {renderError()}
         </div>
     );
   }

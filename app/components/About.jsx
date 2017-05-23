@@ -18,9 +18,24 @@ var React = require('react');
 var About = (props) => {
   return (
     <div>
-      <h3>About Weather:</h3>
+      <h1 className="text-center">About Weather</h1>
       <p>This little app is to practise creating an app in React JS and deploying to Heroku.</p>
       <p>It offers a form to query openWeatherMap.org with a location and will return the temperature there.</p>
+      <p>It has been build using the following:</p>
+
+      {/*Ordered list of links to home page with a city to query */}
+      <ul>
+        <li>
+          <a href="https://www.udemy.com/the-complete-react-web-app-developer-course/learn/v4/overview">
+          The Complete React Web App Developer Course</a>
+        </li>
+        <li>
+          <a href="https://home.openweathermap.org/">openWeatherMap.org</a>
+        </li>
+        <li>
+          <a href="https://www.heroku.com/">Heroku Cloud platform</a>
+        </li>
+      </ul>
     </div>
   );
 }

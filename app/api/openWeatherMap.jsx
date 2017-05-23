@@ -24,14 +24,14 @@ module.exports = {
         return res.data.main.temp;
       }
     },
-    function(res) {
+    function(err) {
       // Throw failure back up:
       // console.log('BAD: ??');
       //console.log(requestURL);
       //console.log(res);
-      console.log(res.data.message);
+      //console.log(res.data.message);
       //throw new Error('City not Found');
-      throw new Error(res.response.data.message);
+      throw new Error(err.response.data.message);
     });
   }
 }
