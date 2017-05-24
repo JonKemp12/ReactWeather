@@ -31,11 +31,11 @@ var WeatherMessage = ({city, temp}) => {
   // Pull out the name & message props in vars:
   // var {city, temp} = props;
 
-  var message = 'Temperature in ' + city + ' is ' + temp + '*C';
-
   return (
     <div>
-      <h3 className="text-center">{message}</h3>
+      <h3 className="text-center">
+        Temperature in {city} is {temp} &deg;C
+      </h3>
     </div>
   );
 }

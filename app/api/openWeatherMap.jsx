@@ -9,9 +9,9 @@ const OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?app
 module.exports = {
   getTemp: function (city) {
     // Made sure city is correct URI encoded:
-    var encodededCity = encodeURIComponent(city);
+    var encodedCity = encodeURIComponent(city);
     // Use React query strings:
-    var requestURL = `${OPEN_WEATHER_MAP_URL}&units=metric&q=${encodededCity}`;
+    var requestURL = `${OPEN_WEATHER_MAP_URL}&units=metric&q=${encodedCity}`;
 
     // Use axios to make the call and RETURN as a promise:
     return axios.get(requestURL).then(function(res) {
@@ -21,7 +21,9 @@ module.exports = {
         throw new Error(res.data.message);
       } else {
         // Good so return temp value:
-        return res.data.main.temp;
+        // return res.data.main.temp;
+        // Good so return data block:
+        return res.data;
       }
     },
     function(err) {

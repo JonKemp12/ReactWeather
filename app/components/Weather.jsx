@@ -52,8 +52,15 @@ var Weather = React.createClass({
       temp: undefined
     });
 
-    // get the temp:
-    openWeatherMap.getTemp(city).then(function(temp) {
+    // get the main data block:
+    openWeatherMap.getTemp(city).then(function(data) {
+      // Pull out values:
+      var city = data.name;
+      var country = data.sys.country;
+      var temp = data.main.temp;
+      var temp_min = data.main.temp_min;
+      var temp_max = data.main.temp_max;
+
       that.setState({
         city: city,
         temp: temp,
