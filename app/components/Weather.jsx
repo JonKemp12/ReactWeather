@@ -46,7 +46,10 @@ var Weather = React.createClass({
     this.setState({
       isLoading: true,
       // State to hold ErrorMessage for modal - clear to start
-      errorMessage: undefined
+      errorMessage: undefined,
+      // reset states (always a good idea):
+      city: undefined,
+      temp: undefined
     });
 
     // get the temp:
@@ -68,6 +71,37 @@ var Weather = React.createClass({
       //   city: city,
       //   temp: 21
       // });
+  },
+
+  // Add fuunction that is called when the component is opened
+  // to handle query params in the URL eg:
+  // http://localhost:3000/#/?city=Winchester,GB
+  componentDidMount: function () {
+    // Get query param:
+    var city = this.props.location.query.city;
+
+    // Check if we have something to search:
+    if (city && city.length > 0) {
+      this.handleSearch(city);
+      // Reset the query string:
+      window.location.hash = '#/';
+    }
+  },
+
+// Add function to listen for updates to props
+// This is needed to send query URLs to the child
+// Same code as above!!
+  componentWillReceiveProps: function (newProps) {
+    // Get query param:
+    var city = newProps.location.query.city;
+
+    // Check if we have something to search:
+    if (city && city.length > 0) {
+      this.handleSearch(city);
+      // Reset the query string:
+      window.location.hash = '#/';
+    }
+
   },
 
 

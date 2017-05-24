@@ -23,8 +23,8 @@ require('style!css!foundation-sites/dist/foundation.min.css');
 // And do it by calling the function:
 $(document).foundation();
 
-// Load application CSS (alias to app/styles/appcss?):
-require('style!css!applicationStyles')
+// Load application (sass) CSS (alias to app/styles/app.scss?):
+require('style!css!sass!applicationStyles')
 
 // render a DOM component, passing the DOM and rhe element
 // which is this app.
